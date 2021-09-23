@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ricky_and_morty_expo",
+    "slug": "ricky_and_morty_expo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ricky_and_morty_expo"
+}
