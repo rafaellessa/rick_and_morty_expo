@@ -13,9 +13,3 @@ export const Container = styled(LinearGradient).attrs({
   justify-content: center;
   align-items: center;
 `;
-
-export const Title = styled.Text`
-  color: ${({ theme }) => theme.colors.white};
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: 40px;
-`;
