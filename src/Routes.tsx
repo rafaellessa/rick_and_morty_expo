@@ -2,8 +2,7 @@ import React, { FunctionComponent } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Splash from "./screens/Splash";
 import Background from "./components/Background";
-import {StatusBar} from 'react-native'
-
+import { StatusBar } from "react-native";
 
 interface RootRouteScreens {
   name: string;
@@ -15,7 +14,6 @@ export const navigations: RootRouteScreens[] = [
     name: "Splash",
     component: Splash,
   },
-  
 ];
 
 const NavigationStack: React.FC = () => {
@@ -26,12 +24,14 @@ const NavigationStack: React.FC = () => {
       return (
         <Stack.Screen key={name} name={name}>
           {(props) => (
-            
             <Background>
-              <StatusBar barStyle="light-content" backgroundColor="transparent" translucent/>
+              <StatusBar
+                barStyle="light-content"
+                backgroundColor="transparent"
+                translucent
+              />
               <Component key={name} {...props} />
             </Background>
-            
           )}
         </Stack.Screen>
       );
