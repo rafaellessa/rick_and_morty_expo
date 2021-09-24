@@ -53,7 +53,10 @@ export const PersonName = styled.Text`
   margin-top: 10px;
 `;
 
-export const LocationName = styled.Text``;
+export const LocationName = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.white};
+`;
 
 export const InfoWrapper = styled.View``;
 
