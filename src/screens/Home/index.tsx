@@ -37,17 +37,20 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  useEffect(() => {
+    fetchPersons();
+  }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       fetchFavorites();
-      handleToogleShowFavorites();
       return () => {};
     }, [])
   );
 
   useEffect(() => {
-    fetchPersons();
-  }, []);
+    handleToogleShowFavorites();
+  }, [favorites]);
 
   useEffect(() => {
     setTimeout(() => {
