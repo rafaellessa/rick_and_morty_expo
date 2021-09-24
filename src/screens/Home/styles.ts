@@ -26,12 +26,12 @@ export const ListWrapper = styled.View`
   flex: 1;
 `;
 
-export const PersonList = styled(FlatList as new () => FlatList<Person>).attrs({
+export const PersonList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     paddingBottom: 80,
   },
-})``;
+})`` as unknown as typeof FlatList;
 
 export const FooterWrapper = styled.View`
   height: ${getBottomSpace() + RFValue(70)}px;
