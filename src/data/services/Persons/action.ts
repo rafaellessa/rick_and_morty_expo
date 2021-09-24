@@ -1,4 +1,4 @@
-import {getBaseUrl} from '../../helpers/api';
+import { getBaseUrl } from "../../helpers/api";
 
 const action = {
   getPersons: `${getBaseUrl()}/character`,

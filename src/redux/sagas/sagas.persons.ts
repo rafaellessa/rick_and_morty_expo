@@ -1,13 +1,22 @@
-import {call, put, takeLatest} from 'redux-saga/effects';
-import PersonService from '../../data/services/Persons';
-import {Person} from '../types/types.person';
-import {PersonActions, PersonTypes} from './../reducers/reducer.persons';
+import { getPersons } from "./../selectors/selector.persons";
+import { call, put, select, takeLatest } from "redux-saga/effects";
+import PersonService from "../../data/services/Persons";
+import { Person, RequestGetAllPersons } from "../types/types.person";
+import { PersonActions, PersonTypes } from "./../reducers/reducer.persons";
 
-function* getAllPersons() {
+function* getAllPersons({ data }: RequestGetAllPersons) {
   try {
-    const response: Person[] = yield call(PersonService.getPersons);
+    const offset = data.offset;
 
-    yield put(PersonActions.successGetAllPersons(response));
+    const response: Person[] = yield call(PersonService.getPersons, { offset });
+
+    if (offset) {
+      const previousPersons = yield select(getPersons);
+      const newPersons = [...previousPersons, ...response];
+      yield put(PersonActions.successGetAllPersons(newPersons));
+    } else {
+      yield put(PersonActions.successGetAllPersons(response));
+    }
   } catch (error) {
     yield put(PersonActions.failureGetAllPersons(String(error.message)));
   }

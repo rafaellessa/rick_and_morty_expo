@@ -12,9 +12,8 @@ const Header: React.FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <Avatar url="https://github.com/rafaellessa.png" />
         <UserWrapper>
-          <UserName>Olá, Rafael</UserName>
+          <UserName>Olá,</UserName>
           <UserGreeting>Seja bem vindo!</UserGreeting>
         </UserWrapper>
       </ContentWrapper>

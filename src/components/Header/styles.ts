@@ -11,9 +11,7 @@ export const ContentWrapper = styled.View`
   align-items: center;
 `;
 
-export const UserWrapper = styled.View`
-  margin-left: 10px;
-`;
+export const UserWrapper = styled.View``;
 
 export const UserName = styled.Text`
   color: ${({ theme }) => theme.colors.white};

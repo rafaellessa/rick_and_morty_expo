@@ -24,8 +24,6 @@ const Details: React.FC = () => {
   const routes = useRoute();
   const person = routes.params.person as Person;
 
-  console.tron.log("Person: ", person);
-
   const handleNavigationBack = () => {
     navigation.goBack();
   };
