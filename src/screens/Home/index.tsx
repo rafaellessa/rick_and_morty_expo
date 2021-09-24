@@ -127,7 +127,9 @@ const Home: React.FC = () => {
         />
       </InputWrapper>
       <ListWrapper>
-        <ListHeader>Personagens</ListHeader>
+        <ListHeader>
+          {viewList === "persons" ? "Personagens" : "Favoritos"}
+        </ListHeader>
         <PersonList
           data={handlePreviewDataList()}
           renderItem={({ item }) => (
