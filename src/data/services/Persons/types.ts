@@ -4,8 +4,11 @@ export interface PersonApi {
   status: string;
   species: string;
   type: string;
-  gender: 'Male' | 'Female';
-  location: string;
+  gender: "Male" | "Female";
+  location: {
+    name: string;
+    url: string;
+  };
   image: string;
   episode: Array<string>;
 }

@@ -53,6 +53,8 @@ export const PersonName = styled.Text`
   margin-top: 10px;
 `;
 
+export const LocationName = styled.Text``;
+
 export const InfoWrapper = styled.View``;
 
 export const SectionTitle = styled.Text`

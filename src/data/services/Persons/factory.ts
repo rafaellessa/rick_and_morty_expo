@@ -8,7 +8,7 @@ export const factoryPersons = (data: PersonApi[]): Person[] => {
       name: item.name,
       species: item.species,
       type: item.type,
-      location: item.location,
+      location: item.location.name,
       image: item.image,
       episode: item.episode,
     };

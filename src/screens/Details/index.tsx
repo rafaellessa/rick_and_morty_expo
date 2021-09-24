@@ -22,6 +22,7 @@ import {
   MovieList,
   MovieItem,
   MovieTitle,
+  LocationName,
 } from "./styles";
 
 const Details: React.FC = () => {
@@ -61,6 +62,7 @@ const Details: React.FC = () => {
           }}
         />
         <PersonName>{person.name}</PersonName>
+        <LocationName>{person.location}</LocationName>
       </PhotoWrapper>
       <InfoWrapper>
         <SectionTitle>Status</SectionTitle>

@@ -29,6 +29,7 @@ const Home: React.FC = () => {
   const [page, setPage] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [filteredPersons, setFilteredPersons] = useState<Person[]>([]);
+  const [viewList, setViewList] = useState<"favorites" | "persons">("persons");
 
   const { favorites, fetchFavorites } = useAddPersonFavorites();
   const [load, setLoad] = useState(true);
@@ -49,10 +50,6 @@ const Home: React.FC = () => {
   );
 
   useEffect(() => {
-    handleToogleShowFavorites();
-  }, [favorites]);
-
-  useEffect(() => {
     setTimeout(() => {
       if (persons.length > 0) {
         setLoad(false);
@@ -70,23 +67,22 @@ const Home: React.FC = () => {
     }
   }, [searchText]);
 
-  const handleToogleShowFavorites = () => {
-    if (filteredPersons.length) {
-      setFilteredPersons([]);
-    } else {
-      setFilteredPersons(favorites);
-    }
-  };
-
   const handleRefetch = () => {
     setPage(0);
     fetchPersons();
   };
 
   const handleParseFilteredPersons = () => {
-    const filtered = persons.filter((person) =>
-      person.name.match(new RegExp(searchText, "i"))
-    );
+    let filtered: Person[] = [];
+    if (viewList === "persons") {
+      filtered = persons.filter((person) =>
+        person.name.match(new RegExp(searchText, "i"))
+      );
+    } else {
+      filtered = favorites.filter((person) =>
+        person.name.match(new RegExp(searchText, "i"))
+      );
+    }
 
     setFilteredPersons(filtered);
   };
@@ -100,9 +96,24 @@ const Home: React.FC = () => {
   };
 
   const handleEndReachedList = () => {
-    if (!loading && filteredPersons.length === 0) {
+    if (!loading && filteredPersons.length === 0 && viewList !== "favorites") {
       fetchPersons(page + 1);
       setPage(page + 1);
+    }
+  };
+
+  const handlePreviewDataList = () => {
+    if (viewList === "persons" && !filteredPersons.length) {
+      return persons;
+    } else if (
+      (viewList === "persons" && filteredPersons.length) ||
+      (viewList === "favorites" && filteredPersons.length)
+    ) {
+      return filteredPersons;
+    } else if (viewList === "favorites" && searchText.length === 0) {
+      return favorites;
+    } else {
+      return filteredPersons;
     }
   };
 
@@ -118,7 +129,7 @@ const Home: React.FC = () => {
       <ListWrapper>
         <ListHeader>Personagens</ListHeader>
         <PersonList
-          data={filteredPersons.length ? filteredPersons : persons}
+          data={handlePreviewDataList()}
           renderItem={({ item }) => (
             <ListItem
               title={item.name}
@@ -144,7 +155,15 @@ const Home: React.FC = () => {
         />
       </ListWrapper>
       <FooterWrapper>
-        <Button onPress={handleToogleShowFavorites}>
+        <Button
+          onPress={() => {
+            if (viewList !== "favorites") {
+              setViewList("favorites");
+            } else {
+              setViewList("persons");
+            }
+          }}
+        >
           <ButtonTitle>Favoritos</ButtonTitle>
         </Button>
       </FooterWrapper>
