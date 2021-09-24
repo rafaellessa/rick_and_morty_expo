@@ -9,6 +9,7 @@ export const ContentWrapper = styled.View`
   padding: 10px 24px;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const UserWrapper = styled.View``;
