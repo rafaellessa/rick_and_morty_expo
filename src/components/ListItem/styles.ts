@@ -15,6 +15,7 @@ export const Container = styled(TouchableOpacity)`
 export const ItemImage = styled.Image`
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 `;
 
 export const Title = styled.Text`

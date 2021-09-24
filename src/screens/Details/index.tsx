@@ -1,7 +1,9 @@
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+
+import React, { useEffect } from "react";
 import CardOption from "../../components/CardOption";
+import { useAddPersonFavorites } from "../../hooks/useAddPersonFavorites";
 import { Person } from "../../redux/types/types.person";
 import {
   Container,
@@ -23,6 +25,12 @@ const Details: React.FC = () => {
   const navigation = useNavigation();
   const routes = useRoute();
   const person = routes.params.person as Person;
+  const { favorites, addFavorite, fetchFavorites } = useAddPersonFavorites();
+  const isFavorite = favorites.some((favorite) => favorite.id === person.id);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
 
   const handleNavigationBack = () => {
     navigation.goBack();
@@ -35,8 +43,8 @@ const Details: React.FC = () => {
           <ArrowIcon name="arrow-back" />
         </ArrowIconWrapper>
         <Title>Detalhes</Title>
-        <LikeIconWrapper>
-          <LikeIcon name="favorite-border" />
+        <LikeIconWrapper onPress={() => addFavorite(person)}>
+          <LikeIcon name={isFavorite ? "favorite" : "favorite-border"} />
         </LikeIconWrapper>
       </HeaderWrapper>
       <PhotoWrapper>
