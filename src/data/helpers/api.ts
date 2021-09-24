@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-  return 'https://rickandmortyapi.com/api';
+  return "https://rickandmortyapi.com/api";
 };
 
-export {getBaseUrl};
+export { getBaseUrl };

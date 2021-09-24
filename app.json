@@ -5,7 +5,17 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "com.superlogica.rickandmorty",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.superlogica.rickandmorty",
+      "versionCode": 1
+    }
   },
   "name": "ricky_and_morty_expo"
 }
+
+

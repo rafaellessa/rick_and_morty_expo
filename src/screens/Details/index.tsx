@@ -19,6 +19,9 @@ import {
   LikeIconWrapper,
   PhotoWrapper,
   SectionWrapper,
+  MovieList,
+  MovieItem,
+  MovieTitle,
 } from "./styles";
 
 const Details: React.FC = () => {
@@ -34,6 +37,10 @@ const Details: React.FC = () => {
 
   const handleNavigationBack = () => {
     navigation.goBack();
+  };
+
+  const parseEpisode = (episode: string) => {
+    return episode.substr(39).replace(/[\[\].!'@,><|://\\;&*()_+=]/g, "");
   };
 
   return (
@@ -77,6 +84,18 @@ const Details: React.FC = () => {
           />
           <CardOption title="Desconhecido" />
         </SectionWrapper>
+        <SectionTitle>Episódios</SectionTitle>
+        <MovieList
+          data={person.episode}
+          renderItem={({ item }) => (
+            <MovieItem>
+              <MovieTitle>{parseEpisode(item)}</MovieTitle>
+            </MovieItem>
+          )}
+          horizontal
+          keyExtractor={(index) => String(index)}
+        />
+        <MovieItem />
       </InfoWrapper>
     </Container>
   );

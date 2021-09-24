@@ -1,7 +1,7 @@
-import {applyMiddleware, compose, createStore} from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import redux from '..';
-import ReactotronConfig from '../../../ReactoTron';
+import { applyMiddleware, compose, createStore } from "redux";
+import createSagaMiddleware from "redux-saga";
+import redux from "..";
+import ReactotronConfig from "../../../ReactoTron";
 
 const sagaMonitor = ReactotronConfig.createSagaMonitor?.();
 const sagaMiddleware = createSagaMiddleware({
@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware({
 
 const composer = compose(
   applyMiddleware(sagaMiddleware),
-  ReactotronConfig.createEnhancer(),
+  ReactotronConfig.createEnhancer()
 );
 
 const store = createStore(redux.reducer, composer);

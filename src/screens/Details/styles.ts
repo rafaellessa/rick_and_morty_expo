@@ -2,6 +2,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { MaterialIcons } from "@expo/vector-icons";
+import { FlatList } from "react-native";
 
 export const Container = styled.View`
   flex: 1;
@@ -64,4 +65,27 @@ export const SectionTitle = styled.Text`
 export const SectionWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
+`;
+
+export const MovieList = styled(FlatList).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    paddingBottom: 80,
+  },
+})`` as unknown as typeof FlatList;
+
+export const MovieItem = styled.View`
+  width: ${RFValue(80)}px;
+  height: ${RFValue(80)}px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 10px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MovieTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${RFValue(24)}px;
+  font-family: ${({ theme }) => theme.fonts.bold};
 `;
