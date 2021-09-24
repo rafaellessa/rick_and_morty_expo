@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
@@ -8,13 +9,13 @@ import {
   getPersons,
   getPersonsMetadata,
 } from "../../redux/selectors/selector.persons";
-
 import { Container, ListHeader, ListWrapper, PersonList } from "./styles";
 
 const Home: React.FC = () => {
   const persons = useSelector(getPersons);
-  const { loading, error } = useSelector(getPersonsMetadata);
+  const { loading } = useSelector(getPersonsMetadata);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchPersons();
@@ -23,6 +24,7 @@ const Home: React.FC = () => {
   const fetchPersons = () => {
     dispatch(PersonActions.requestGetAllPersons({}));
   };
+
   const renderContent = () => (
     <Container>
       <Header />
@@ -34,7 +36,7 @@ const Home: React.FC = () => {
             <ListItem
               title={item.name}
               urlPhoto={item.image}
-              onPress={() => console.tron.log("clicou")}
+              onPress={() => navigation.navigate("Details", { person: item })}
             />
           )}
           keyExtractor={(item) => String(item.id)}

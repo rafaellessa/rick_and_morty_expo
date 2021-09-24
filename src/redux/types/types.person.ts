@@ -1,13 +1,13 @@
-import {Action} from 'redux';
-import {ImmutableObject} from 'seamless-immutable';
+import { Action } from "redux";
+import { ImmutableObject } from "seamless-immutable";
 
 export interface Person {
   id: number;
   name: string;
-  status: string;
+  status: "vivo" | "morto" | "desconhecido";
   species: string;
   type: string;
-  gender: 'masculino' | 'feminino';
+  gender: "masculino" | "feminino";
   location: string;
   image: string;
   episode: Array<string>;

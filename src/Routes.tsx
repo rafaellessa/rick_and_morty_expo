@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Splash from "./screens/Splash";
 import Home from "./screens/Home";
+import Details from "./screens/Details";
 import Background from "./components/Background";
 import { StatusBar } from "react-native";
 
@@ -18,6 +19,10 @@ export const navigations: RootRouteScreens[] = [
   {
     name: "Home",
     component: Home,
+  },
+  {
+    name: "Details",
+    component: Details,
   },
 ];
 
